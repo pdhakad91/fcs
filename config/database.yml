@@ -1,0 +1,19 @@
+      base: &base
+        adapter: mysql
+        encoding: utf8
+        pool: 5
+        host: 127.0.0.1
+        username: root
+        password: 'root'
+ 
+      development:
+        database: fcs_development
+        <<: *base
+ 
+      test:
+        database: fcs_test
+        <<: *base
+ 
+      production:
+        database: fcs_production
+        <<: *base

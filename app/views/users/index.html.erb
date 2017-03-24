@@ -1,0 +1,9 @@
+<%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-sm btn-danger") %>
+<% if can? :manage, SecretCode %>
+  <%= link_to "Secret Codes", secret_codes_path, :class => "btn btn-sm btn-primary" %>
+<% end %>
+<br>
+
+Welcome <% current_user.email %>,
+
+This is prakash

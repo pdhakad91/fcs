@@ -1,0 +1,60 @@
+<%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-sm btn-danger") %> 
+<%= link_to "Show Page", users_path, :class => "btn btn-sm btn-primary" %>
+
+<table class="table table-striped">
+  <tr>
+    <th>Code</th>
+    <th>User Email</th>
+  </tr>
+  <% @secret_codes.each do |secret_code| %>
+    <tr>
+      <td><%= secret_code.code %></td>
+      <td><%= secret_code.user.try(:email) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<hr>
+
+
+<select class="generate_codes">
+  <option value="1">1</option>
+  <option value="10" selected="selected">10</option>
+  <option value="20">20</option>
+  <option value="50">50</option>
+  <option value="100">100</option>
+</select>
+
+<a href="javascript:void(0)" onclick='create_codes()' class="btn btn-sm btn-success">Create</a>
+
+<div class="new_code_panel">
+  
+</div>
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    send_request();
+  });
+
+  $(document).on("change", ".generate_codes", function(){
+    send_request();
+  });
+
+  function send_request(){
+    $.ajax({
+      url: '/secret_codes/new',
+      data: { count: $(".generate_codes").val() }
+    });
+  }
+
+  function create_codes(){
+    $.ajax({
+      url: '/secret_codes',
+      method: "POST",
+      data: { values: $(".new_codes").val() }
+    });
+  }
+</script>

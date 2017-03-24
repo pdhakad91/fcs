@@ -1,0 +1,8 @@
+<table class="table table-striped">
+  <% @generated_codes.each do |code| %>
+    <tr>
+      <td><%= code %></td>
+    </tr>
+  <% end %>
+</table>
+<input type="hidden" value="<%= @generated_codes.join(",") %>" class="new_codes">
